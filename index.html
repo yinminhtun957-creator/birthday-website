@@ -2,28 +2,188 @@
 <html>
 
 <head>
-  <title>Happy Birthday</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Happy Birthday ❤️</title>
 
-  <style>
-    body {
-      text-align: center;
-      background: pink;
-      font-family: Arial;
-      padding-top: 100px;
-    }
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(#101028, #2b1b45);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+}
 
-    h1 {
-      color: white;
-      font-size: 50px;
+#title {
+    margin-top: 60px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#start-btn {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background: white;
+}
+
+.star {
+    position: absolute;
+    font-size: 45px;
+    cursor: pointer;
+    animation: twinkle 1.5s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        transform: scale(1);
     }
-  </style>
+    to {
+        transform: scale(1.3);
+    }
+}
+
+.message {
+    display: none;
+    font-size: 22px;
+    margin: 20px;
+}
+
+#final-reveal {
+    display: none;
+    margin-top: 30px;
+}
+
+.photo {
+    width: 250px;
+    border-radius: 20px;
+}
+
+.full-text {
+    margin: 20px;
+    font-size: 20px;
+    line-height: 1.6;
+}
+</style>
+
 </head>
+
 
 <body>
 
-  <h1>🎂 Happy Birthday 🎂</h1>
-  <p>May your day be filled with happiness ❤️</p>
+<div id="title">
+Level 30: Still my favorite view. 🎂❤️
+</div>
+
+
+<button id="start-btn">
+Click for Surprise
+</button>
+
+
+<audio id="bg-audio" src="Happy Birthday.mp3"></audio>
+
+
+<div id="stars"></div>
+
+
+<div id="final-reveal">
+
+<img src="Untitled.jpg" class="photo">
+
+<div class="full-text">
+
+Happy 30th! Chapter 30: The best is yet to come.<br>
+I’m so incredibly proud of the woman you’ve become.<br>
+Keep chasing your dreams, and always remember<br>
+that I’m in your corner. Love you, Happy Birthday my love! 🎂❤️🎈
+
+</div>
+
+</div>
+
+
+<script>
+
+const messages = [
+"Happy Birthday ❤️",
+"Level 30 looks beautiful on you ✨",
+"Keep shining like a star ⭐",
+"Never stop chasing your dreams 🌙",
+"You deserve all happiness 💕",
+"Always stay amazing ❤️",
+"My favorite person forever 🎂"
+];
+
+
+let count = 0;
+
+
+document.getElementById("start-btn").onclick = function(){
+
+document.getElementById("bg-audio").play();
+
+
+for(let i=0;i<7;i++){
+
+let star=document.createElement("div");
+
+star.innerHTML="⭐";
+
+star.className="star";
+
+star.style.left=Math.random()*80+"%";
+star.style.top=(150+Math.random()*400)+"px";
+
+
+star.onclick=function(){
+
+this.remove();
+
+let text=document.createElement("div");
+
+text.className="message";
+
+text.style.display="block";
+
+text.innerHTML=messages[count];
+
+document.body.appendChild(text);
+
+count++;
+
+
+if(count==7){
+
+setTimeout(()=>{
+
+document.getElementById("stars").style.display="none";
+
+document.getElementById("final-reveal").style.display="block";
+
+},1000);
+
+}
+
+}
+
+
+document.getElementById("stars").appendChild(star);
+
+}
+
+this.style.display="none";
+
+}
+
+
+</script>
+
 
 </body>
 
