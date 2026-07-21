@@ -1,185 +1,959 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Happy Birthday ❤️</title>
 
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
-    background: linear-gradient(#101028, #2b1b45);
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: white;
+
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
 }
 
-#title {
-    margin-top: 60px;
-    font-size: 35px;
-    font-weight: bold;
+
+
+body{
+
+
+min-height:100vh;
+
+
+background:
+
+radial-gradient(
+circle at center,
+#bf953f,
+#fcf6ba,
+#b38728,
+#fbf5b7,
+#aa771c
+);
+
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+font-family:'Poppins',sans-serif;
+
+
+overflow:hidden;
+
+
 }
 
-#start-btn {
-    margin-top: 30px;
-    padding: 15px 30px;
-    font-size: 20px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    background: white;
+
+
+
+.card{
+
+
+width:92%;
+
+
+max-width:430px;
+
+
+padding:30px;
+
+
+text-align:center;
+
+
+
+background:
+rgba(255,255,255,0.7);
+
+
+
+backdrop-filter:blur(10px);
+
+
+
+border-radius:25px;
+
+
+
+border:
+2px solid rgba(255,255,255,.5);
+
+
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.2);
+
+
+
+position:relative;
+
+
 }
 
-.star {
-    position: absolute;
-    font-size: 45px;
-    cursor: pointer;
-    animation: twinkle 1.5s infinite alternate;
+
+
+
+
+#title{
+
+
+font-family:'Playfair Display',serif;
+
+
+font-size:38px;
+
+
+font-weight:700;
+
+
+color:#4a3728;
+
+
+margin-bottom:30px;
+
+
 }
 
-@keyframes twinkle {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.3);
-    }
+
+
+
+
+#start-btn{
+
+
+padding:18px 45px;
+
+
+font-size:20px;
+
+
+color:white;
+
+
+background:#8b5a2b;
+
+
+border:none;
+
+
+border-radius:50px;
+
+
+cursor:pointer;
+
+
+transition:.3s;
+
+
 }
 
-.message {
-    display: none;
-    font-size: 22px;
-    margin: 20px;
+
+
+#start-btn:hover{
+
+
+transform:scale(1.05);
+
+
 }
 
-#final-reveal {
-    display: none;
-    margin-top: 30px;
+
+
+
+
+#final-reveal{
+
+
+margin-top:30px;
+
+
+opacity:0;
+
+
+transition:2s;
+
+
 }
 
-.photo {
-    width: 250px;
-    border-radius: 20px;
+
+
+#final-reveal.show{
+
+
+opacity:1;
+
+
 }
 
-.full-text {
-    margin: 20px;
-    font-size: 20px;
-    line-height: 1.6;
+
+
+
+
+.photo-area{
+
+
+position:relative;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
 }
+
+
+
+
+
+.photo{
+
+
+width:100%;
+
+
+border-radius:20px;
+
+
+border:4px solid #bf953f;
+
+
+opacity:0;
+
+
+transform:scale(.75);
+
+
+transition:2s;
+
+
+position:relative;
+
+
+z-index:2;
+
+
+}
+
+
+
+
+
+.photo.show{
+
+
+opacity:1;
+
+
+transform:scale(1);
+
+
+}
+
+
+
+
+/* ⭐🎂 Orbit */
+
+
+.orbit{
+
+
+position:absolute;
+
+
+width:120%;
+
+
+height:120%;
+
+
+top:50%;
+
+
+left:50%;
+
+
+transform:
+translate(-50%,-50%);
+
+
+animation:
+rotateOrbit 12s linear infinite;
+
+
+
+z-index:5;
+
+
+pointer-events:none;
+
+
+opacity:0;
+
+
+}
+
+
+
+.orbit.show{
+
+
+opacity:1;
+
+
+}
+
+
+
+
+.orbit span{
+
+
+position:absolute;
+
+
+font-size:32px;
+
+
+transform:
+translate(-50%,-50%);
+
+
+filter:
+drop-shadow(0 0 5px gold);
+
+
+}
+
+
+
+
+
+@keyframes rotateOrbit{
+
+
+from{
+
+
+transform:
+translate(-50%,-50%)
+rotate(0deg);
+
+
+}
+
+
+to{
+
+
+transform:
+translate(-50%,-50%)
+rotate(360deg);
+
+
+}
+
+
+}
+
+
+
+
+
+/* ⭐ Background Twinkle Stars */
+
+
+.star{
+
+
+position:absolute;
+
+
+font-size:25px;
+
+
+opacity:0;
+
+
+animation:
+twinkle 3s infinite ease-in-out;
+
+
+z-index:1;
+
+
+}
+
+
+
+
+@keyframes twinkle{
+
+
+0%{
+
+
+opacity:0;
+
+
+transform:scale(.5);
+
+
+}
+
+
+
+50%{
+
+
+opacity:1;
+
+
+transform:scale(1.2);
+
+
+}
+
+
+
+100%{
+
+
+opacity:0;
+
+
+transform:scale(.5);
+
+
+}
+
+
+}
+
+
+
+
+
+
+.full-text{
+
+
+margin-top:25px;
+
+
+color:#333;
+
+
+font-size:18px;
+
+
+line-height:1.8;
+
+
+font-weight:600;
+
+
+white-space:pre-line;
+
+
+}
+
+
+
+
+
 </style>
+
 
 </head>
 
 
+
+
 <body>
 
+
+
+
+<div class="card">
+
+
+
 <div id="title">
+
+
 Level 30: Still my favorite view. 🎂❤️
+
+
 </div>
 
 
+
+
+
 <button id="start-btn">
-Click for Surprise
+
+
+💖 Click For Surprise 💖
+
+
 </button>
 
 
-<audio id="bg-audio" src="Happy Birthday.mp3"></audio>
 
 
-<div id="stars"></div>
+
 
 
 <div id="final-reveal">
 
-<img src="Untitled.jpg" class="photo">
 
-<div class="full-text">
 
-Happy 30th! Chapter 30: The best is yet to come.<br>
-I’m so incredibly proud of the woman you’ve become.<br>
-Keep chasing your dreams, and always remember<br>
-that I’m in your corner. Love you, Happy Birthday my love! 🎂❤️🎈
+
+
+<div class="photo-area">
+
+
+
+
+
+<img
+
+src="Untitled.jpg"
+
+class="photo"
+
+id="photo"
+
+alt="Birthday Photo"
+
+>
+
+
+
+
+
+
+
+<div class="orbit" id="orbit">
+
+
+
+<span>⭐</span>
+
+<span>🎂</span>
+
+<span>⭐</span>
+
+<span>🎂</span>
+
+<span>⭐</span>
+
+<span>🎂</span>
+
+
 
 </div>
 
+
+
+
+
+
 </div>
 
 
+
+
+
+
+
+<div class="full-text" id="typing"></div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<audio id="music">
+
+
+<source
+
+src="Happy Birthday.mp3"
+
+type="audio/mpeg">
+
+
+</audio>
 <script>
 
-const messages = [
-"Happy Birthday ❤️",
-"Level 30 looks beautiful on you ✨",
-"Keep shining like a star ⭐",
-"Never stop chasing your dreams 🌙",
-"You deserve all happiness 💕",
-"Always stay amazing ❤️",
-"My favorite person forever 🎂"
-];
+
+const btn = document.getElementById("start-btn");
+
+const reveal = document.getElementById("final-reveal");
+
+const photo = document.getElementById("photo");
+
+const orbit = document.getElementById("orbit");
+
+const music = document.getElementById("music");
+
+const typingBox = document.getElementById("typing");
 
 
-let count = 0;
 
 
-document.getElementById("start-btn").onclick = function(){
 
-document.getElementById("bg-audio").play();
+const message = `
+Happy 30th!
+Chapter 30: The best is yet to come.
 
+I’m so incredibly proud of the woman you’ve become.
 
-for(let i=0;i<7;i++){
-
-let star=document.createElement("div");
-
-star.innerHTML="⭐";
-
-star.className="star";
-
-star.style.left=Math.random()*80+"%";
-star.style.top=(150+Math.random()*400)+"px";
+Keep chasing your dreams, and always remember
+that I’m in your corner. Love you, Happy Birthday my love! 🎂❤️🎈
+`;
 
 
-star.onclick=function(){
-
-this.remove();
-
-let text=document.createElement("div");
-
-text.className="message";
-
-text.style.display="block";
-
-text.innerHTML=messages[count];
-
-document.body.appendChild(text);
-
-count++;
 
 
-if(count==7){
 
-setTimeout(()=>{
 
-document.getElementById("stars").style.display="none";
 
-document.getElementById("final-reveal").style.display="block";
+btn.addEventListener("click",()=>{
 
-},1000);
+
+
+    // Button hide
+
+    btn.style.display="none";
+
+
+
+
+    // Music start
+
+    music.play();
+
+
+
+
+
+    // ⭐ Stars first
+
+    createStars();
+
+
+
+
+
+
+
+    // Photo show
+
+    setTimeout(()=>{
+
+
+        reveal.classList.add("show");
+
+
+        photo.classList.add("show");
+
+
+
+    },2500);
+
+
+
+
+
+
+
+    // ⭐🎂 Orbit start
+
+    setTimeout(()=>{
+
+
+        arrangeOrbit();
+
+
+        orbit.classList.add("show");
+
+
+
+    },4000);
+
+
+
+
+
+
+
+    // Typing last
+
+    setTimeout(()=>{
+
+
+        typeWriter();
+
+
+
+    },5000);
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+// ⭐ Random Twinkle Stars
+
+
+function createStars(){
+
+
+
+    for(let i=0;i<40;i++){
+
+
+
+        let star =
+        document.createElement("div");
+
+
+
+        star.className="star";
+
+
+
+        star.innerHTML="⭐";
+
+
+
+
+        star.style.left =
+        Math.random()*100+"vw";
+
+
+
+        star.style.top =
+        Math.random()*100+"vh";
+
+
+
+
+
+        star.style.fontSize =
+        (15+Math.random()*20)+"px";
+
+
+
+
+
+        star.style.animationDelay =
+        Math.random()*5+"s";
+
+
+
+
+        star.style.animationDuration =
+        (2+Math.random()*3)+"s";
+
+
+
+
+
+        document.body.appendChild(star);
+
+
+
+
+    }
+
 
 }
 
+
+
+
+
+
+
+
+
+// ⭐🎂 Circle Position
+
+
+function arrangeOrbit(){
+
+
+
+    const items =
+    document.querySelectorAll(".orbit span");
+
+
+
+    const radius = 42;
+
+
+
+    const center = 50;
+
+
+
+
+
+    items.forEach((item,index)=>{
+
+
+
+        let angle =
+        (360/items.length)*index;
+
+
+
+
+
+        let x =
+        center +
+        Math.cos(angle*Math.PI/180)
+        * radius;
+
+
+
+
+
+        let y =
+        center +
+        Math.sin(angle*Math.PI/180)
+        * radius;
+
+
+
+
+
+
+        item.style.left =
+        x+"%";
+
+
+
+        item.style.top =
+        y+"%";
+
+
+
+
+
+    });
+
+
+
 }
 
 
-document.getElementById("stars").appendChild(star);
+
+
+
+
+
+
+// 📝 Typing Animation
+
+
+function typeWriter(){
+
+
+
+    let i=0;
+
+
+
+    function write(){
+
+
+
+        if(i < message.length){
+
+
+
+            typingBox.innerHTML +=
+            message.charAt(i);
+
+
+
+            i++;
+
+
+
+            setTimeout(write,60);
+
+
+
+        }
+
+
+
+    }
+
+
+
+    write();
+
+
 
 }
 
-this.style.display="none";
 
-}
 
 
 </script>
